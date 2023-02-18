@@ -16,17 +16,18 @@ import java.util.Stack;
  * }
  */
 
-class Solution {
+ //[3,9,20,null,2,7,10,null,null,null,null,5,null,null,6]
+
+ class Solution {
     public int maxDepth(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
-        return depth(root,stack);
+        return depth(root, stack);
 
     }
 
     private static int depth(TreeNode root,Stack<TreeNode> stack){
-        System.out.println(root.val);
-        if(root.right == null) return 0; 
-        if(root.left == null) return 0;
+        //System.out.println(root.val);
+        if(root == null) return 0;
         return Math.max(depth(root.left, stack),depth(root.right, stack))+1;
     }
 }

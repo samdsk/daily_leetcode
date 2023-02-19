@@ -4,10 +4,10 @@
     },
     "java.project.sourcePaths": [
         "989. Add to Array-Form of Integer",
-        "876. Middle of the Linked List",
+        "783. Minimum Distance Between BST Nodes",
         "21. Merge Two Sorted Lists",
         "206. Reverse Linked List",
         "104. Maximum Depth of Binary Tree",
-        "783. Minimum Distance Between BST Nodes"
+        "103. Binary Tree Zigzag Level Order Traversal"
     ]
 }

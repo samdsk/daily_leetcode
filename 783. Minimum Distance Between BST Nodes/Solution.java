@@ -1,5 +1,3 @@
-import java.util.Stack;
-
 class Solution {
     private int min_diff = Integer.MAX_VALUE;
     private TreeNode prev;

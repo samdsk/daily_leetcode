@@ -1,4 +1,3 @@
-import java.time.temporal.WeekFields;
 import java.util.Arrays;
 
 /**
@@ -7,40 +6,33 @@ import java.util.Arrays;
 public class Solution {
 
     public int shipWithinDays(int[] weights, int days) {        
-        int max = Arrays.stream(weights).max().getAsInt();
-        System.out.println("maxiniziale "+max);
+        int total_weight = Arrays.stream(weights).sum();
+        int max_capacity = Arrays.stream(weights).max().getAsInt();
         
-        int index = 0;
-        int count = 0;
-        
-        while(true){
-            while(index<weights.length){
-                index = sum(weights,index,max);
-                count++;
-            }
+        int left = max_capacity, right = total_weight;
 
-            if(count <= days) {                
-                break;
-            }
-            if(index>=weights.length){                
-                count = 0;
-                max++;
-                index = 0;
-            }
-
+        while(left<right){
+            int mid = left + (right -left)/2;
+            if(isPossible(weights, days, mid)){
+                right = mid;
+            }else left = mid+1;
         }
 
-        return max;
+        return left;
     }
 
-    public static int sum(int[] n,int i,int limit){
-        int sum = 0;
-        while(i<n.length){            
-            if(sum+n[i]>limit) break;
-            sum += n[i];
-            i++;
+    public static boolean isPossible(int[] weights,int days,int capacity){
+        int temp_days = 1, temp_sum = 0;
+
+        for(int w : weights){
+            temp_sum += w;
+            if(temp_sum>capacity){
+                temp_days++;
+                temp_sum = w;
+            }
         }
-        return i;
+
+        return temp_days<=days;
     }
 
 

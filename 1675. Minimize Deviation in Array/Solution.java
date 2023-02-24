@@ -56,7 +56,7 @@ class Solution {
 
         int res = Integer.MAX_VALUE;
 
-        while(queue.poll() % 2 == 0){
+        while(queue.peek() % 2 == 0){
             int max = queue.poll();
             res = Math.min(res,max-min);
             int newMin = max/2;

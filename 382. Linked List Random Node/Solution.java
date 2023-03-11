@@ -23,7 +23,7 @@ class Solution {
         ListNode curr = head;
 
         while(curr != null){
-            if(Math.random() < (1 / scope)){
+            if(Math.random() < (1.0 / scope)){
                 output = curr.val;
             }
             scope++;

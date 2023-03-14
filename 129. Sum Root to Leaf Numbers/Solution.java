@@ -16,31 +16,60 @@ public class TreeNode {
 }
 
 class Solution {
+    // private int sum;
+
+    // public int sumNumbers(TreeNode root) {
+    //     if(root == null) return 0;
+    //     this.sum = 0;
+
+    //     helper(new StringBuilder(), root);
+
+    //     return sum;
+    // }
+
+    // private void helper(StringBuilder number, TreeNode root){
+    //     if(root == null) {
+    //         return;
+    //     }        
+    //     StringBuilder temp = new StringBuilder(number);
+    //     temp.append(root.val);
+
+    //     if(root.left == null && root.right == null){
+    //         sum += Integer.parseInt(temp.toString());
+    //         return;
+    //     }
+
+    //     helper(temp, root.left);
+    //     helper(temp, root.right);
+
+
+    //     return;
+
+    // }
+
     private int sum;
 
     public int sumNumbers(TreeNode root) {
         if(root == null) return 0;
-        this.sum = 0;
 
-        helper(new StringBuilder(), root);
+        helper(0, root);
 
         return sum;
     }
 
-    private void helper(StringBuilder number, TreeNode root){
+    private void helper(int number, TreeNode root){
         if(root == null) {
             return;
         }        
-        StringBuilder temp = new StringBuilder(number);
-        temp.append(root.val);
+        number = number * 10 + root.val;
 
         if(root.left == null && root.right == null){
-            sum += Integer.parseInt(temp.toString());
+            sum += number;
             return;
         }
 
-        helper(temp, root.left);
-        helper(temp, root.right);
+        helper(number, root.left);
+        helper(number, root.right);
 
 
         return;

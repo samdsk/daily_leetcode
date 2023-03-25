@@ -9,56 +9,63 @@ class Solution {
     public long countPairs(int n, int[][] edges) {
 
         //unionfind
-        UnionFind dsu = new UnionFind(n);
 
-        for(int[] e : edges)
-            dsu.union_set(e[0], e[1]);
+        // UnionFind dsu = new UnionFind(n);
 
-        Map<Integer,Integer> componentSize = new HashMap<>();
+        // for(int[] e : edges)
+        //     dsu.union_set(e[0], e[1]);
 
-        for (int i = 0; i < n; i++) {
-            int parent = dsu.find(i);
-            componentSize.put(parent,componentSize.getOrDefault(parent, 0)+1);
-        }
+        // Map<Integer,Integer> componentSize = new HashMap<>();
 
-        long numberOfPaths = 0;
+        // for (int i = 0; i < n; i++) {
+        //     int parent = dsu.find(i);
+        //     componentSize.put(parent,componentSize.getOrDefault(parent, 0)+1);
+        // }
+
+        // long numberOfPaths = 0;
 
         // dfs bfs
-        // Map<Integer,List<Integer>> adj = new HashMap<>();
-        // for(int[] edge : edges){
-        //     adj.computeIfAbsent(edge[0],k-> new ArrayList<Integer>()).add(edge[1]);
-        //     adj.computeIfAbsent(edge[1],k-> new ArrayList<Integer>()).add(edge[0]);
-        // }
+
+        Map<Integer,List<Integer>> adj = new HashMap<>();
+        for(int[] edge : edges){
+            adj.computeIfAbsent(edge[0],k-> new ArrayList<Integer>()).add(edge[1]);
+            adj.computeIfAbsent(edge[1],k-> new ArrayList<Integer>()).add(edge[0]);
+        }
 
         //common
         long remaingNodes = n;
 
         // dfs bfs
-        // long numberOfPairs = 0;
-        // long sizeOfComponent = 0;
-        // boolean[] visit = new boolean[n];
+
+        long numberOfPairs = 0;
+        long sizeOfComponent = 0;
+        boolean[] visit = new boolean[n];
 
         // unionfind
-        for(int c : componentSize.values()){
-            numberOfPaths += c * (remaingNodes - c);
-            remaingNodes -= c;
-        }
 
-        // dfs bfs
-        // for (int i = 0; i < n; i++) {
-        //     if(!visit[i]){
-        //         // sizeOfComponent = dfs(i, adj, visit);
-        //         sizeOfComponent = bfs(i, adj, visit);
-        //         numberOfPairs += sizeOfComponent * (remaingNodes - sizeOfComponent);
-        //         remaingNodes -= sizeOfComponent;
-        //     }
+        // for(int c : componentSize.values()){
+        //     numberOfPaths += c * (remaingNodes - c);
+        //     remaingNodes -= c;
         // }
 
-        //unionfind
-        return numberOfPaths;
+        // dfs bfs
+
+        for (int i = 0; i < n; i++) {
+            if(!visit[i]){
+                // sizeOfComponent = dfs(i, adj, visit);
+                sizeOfComponent = bfs(i, adj, visit);
+                numberOfPairs += sizeOfComponent * (remaingNodes - sizeOfComponent);
+                remaingNodes -= sizeOfComponent;
+            }
+        }
+
+        // unionfind
+
+        // return numberOfPaths;
 
         //dfs bfs
-        // return numberOfPairs;
+
+        return numberOfPairs;
 
 
     }

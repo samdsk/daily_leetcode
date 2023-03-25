@@ -52,8 +52,8 @@ class Solution {
 
         for (int i = 0; i < n; i++) {
             if(!visit[i]){
-                // sizeOfComponent = dfs(i, adj, visit);
-                sizeOfComponent = bfs(i, adj, visit);
+                sizeOfComponent = dfs(i, adj, visit);
+                // sizeOfComponent = bfs(i, adj, visit);
                 numberOfPairs += sizeOfComponent * (remaingNodes - sizeOfComponent);
                 remaingNodes -= sizeOfComponent;
             }

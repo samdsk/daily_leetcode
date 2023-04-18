@@ -1,12 +1,32 @@
-import java.util.Arrays;
-
 class Solution {
     public boolean canMakeArithmeticProgression(int[] arr) {
-        Arrays.sort(arr);
-        int diff = arr[1] - arr[0];
+        int min = arr[0];
+        int max = arr[0];
 
-        for(int i = 1;i<arr.length;i++){
-            if(Math.abs(arr[i] - arr[i-1]) != diff) return false;
+        for(int n : arr){
+            if(min>n) min = n;
+            if(max<n) max = n;
+        }
+
+        int n = arr.length;
+
+        if((max - min) % (n-1) != 0) return false;
+
+        int diff = (max - min) / (n-1);
+        int i = 0;
+
+        while(i<n){
+            if(arr[i] == min + i * diff) i++;
+            else if((arr[i] - min ) % diff != 0) return false;
+            else{
+                int j = (arr[i] - min) / diff;
+
+                if(arr[i] == arr[j]) return false;
+
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
         }
 
         return true;

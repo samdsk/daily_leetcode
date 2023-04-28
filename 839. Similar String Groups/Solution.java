@@ -5,14 +5,13 @@ class Solution {
         int count = n;
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            for (int j = i+1 ; j < n; j++) {
                 if(isSimilar(strs[i], strs[j]) && dsu.find(i) != dsu.find(j)){
                     count--;
                     dsu.union_set(i, j);
                 }
             }
         }
-
         return count;
     }
 
@@ -50,12 +49,11 @@ class UnionFind{
         int yset = find(y);
 
         if(xset == yset) return;
-        else if(xset < yset) rank[xset] = yset;
-        else if(xset > yset) rank[yset] = xset;
+        else if(rank[xset] < rank[yset]) parent[xset] = yset;
+        else if(rank[xset] > rank[yset]) parent[yset] = xset;
         else {
-            rank[yset] = xset;
+            parent[yset] = xset;
             rank[xset]++;
         }
-
     }
 }

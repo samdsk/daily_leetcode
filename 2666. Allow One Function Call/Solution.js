@@ -3,7 +3,7 @@
  * @return {Function}
  */
 var once = function(fn) {
-    called = false
+    let called = false
     return function(...args){
 
         if(!called) {

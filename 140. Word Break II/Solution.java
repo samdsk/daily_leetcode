@@ -7,19 +7,19 @@ class Solution {
         for (String temp : wordDict)
             dict.add(temp);
 
-        dfs(s, 0, 0, new StringBuilder());
+        dfs(s, 0, 0, "");
 
         return ans;
     }
 
-    private void dfs(String s, int left, int right, StringBuilder sentence) {
+    private void dfs(String s, int left, int right, String sentence) {
         int N = s.length();
         if (left >= N || right >= N) {
             ans.add(sentence.toString().trim());
             return;
         }
 
-        StringBuilder local = new StringBuilder(sentence.toString());
+        StringBuilder local = new StringBuilder(sentence);
 
         while (right < N) {
             String word = s.substring(left, right + 1);
@@ -28,9 +28,9 @@ class Solution {
                 local.append(word);
                 local.append(' ');
 
-                dfs(s, right + 1, right + 1, new StringBuilder(local.toString()));
+                dfs(s, right + 1, right + 1, local.toString());
 
-                local = new StringBuilder(sentence.toString());
+                local = new StringBuilder(sentence);
             }
 
             right++;

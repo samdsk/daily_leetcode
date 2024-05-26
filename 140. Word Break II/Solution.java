@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 class Solution {
-    Set<String> dict = new HashSet<>();
-    List<String> ans = new ArrayList<>();
+    private final Set<String> dict = new HashSet<>();
+    private final List<String> ans = new ArrayList<>();
 
     public List<String> wordBreak(String s, List<String> wordDict) {
 
